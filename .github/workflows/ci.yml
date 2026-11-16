@@ -26,9 +26,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - run: docker build -t agentsys-server:ci .
       - run: docker run -d --name agentsys-ci -p 8080:8080 -e AGENTSYS_TOKEN=ci-container-token agentsys-server:ci
       - run: curl --retry 20 --retry-all-errors --retry-delay 1 --max-time 2 --fail http://127.0.0.1:8080/api/meta
       - run: test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/index.html)" = 404
+      - run: node tests/container-http.js
+      - run: docker restart agentsys-ci
+      - run: curl --retry 20 --retry-all-errors --retry-delay 1 --max-time 2 --fail http://127.0.0.1:8080/api/meta
+      - run: node tests/container-http.js --verify-restart
       - if: always()
         run: docker logs agentsys-ci

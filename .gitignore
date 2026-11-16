@@ -7,3 +7,4 @@ extraction-tests.txt
 package-result.json
 restored-tests.txt
 *-tests.txt
+.container-smoke.json
