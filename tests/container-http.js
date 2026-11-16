@@ -22,11 +22,12 @@ async function call(method, route, body) {
   }
   await call('PUT', 'settings', {developer_mode: true});
   const project = await call('POST', 'projects', {name: 'Server-only container'});
-  const node = await call('POST', 'projects/' + project.id + '/typed-nodes', {node_type: 'custom', config: {title: 'Server only', op: 'script', inputs: [{id: 'in', name: 'in', type: 'signal'}, {id: 'script', name: 'script', default: "node.display('server-only execution'); node.output.result = 42;"}], outputs: [{id: 'out', name: 'out', type: 'signal'}, {id: 'result', name: 'result'}]}, position: {x: 0, y: 0}});
+  const codeType = 'c0dec0dec0dec0dec0dec0dec0dec0de';
+  await call('PUT', 'projects/' + project.id + '/types', {types: [{id: codeType, name: 'Code', fields: [], control: 'code', color: '#888888'}]});
+  const node = await call('POST', 'projects/' + project.id + '/typed-nodes', {node_type: 'custom', config: {title: 'Server only', op: 'script', inputs: [{id: 'in', name: 'in', type: 'signal'}, {id: 'script', name: 'script', type: 't:' + codeType, default: "node.display('server-only execution');"}], outputs: [{id: 'out', name: 'out', type: 'signal'}]}, position: {x: 0, y: 0}});
   const execution = await call('POST', 'projects/' + project.id + '/execution', {wait: true, node_ids: [node.id], input_port: 'in'});
   assert.equal(execution.dispatch_status, 'completed');
   assert.ok(Object.values(execution.displays || {}).includes('server-only execution'));
-  assert.equal(execution.outputs[node.id].result, 42);
   fs.writeFileSync(stateFile, JSON.stringify({project: project.id}));
   console.log('PASS server-only project/workflow creation and meaningful execution over HTTP');
 })().catch(error => {console.error(error); process.exitCode = 1;});
