@@ -44,6 +44,25 @@
     },
     "api": {
       "const": "/api"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "request_body_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "session_ttl_seconds": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
     }
   }
 }

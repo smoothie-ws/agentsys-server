@@ -398,6 +398,8 @@ function createApiServer(options = {}) {
     api: '/api',
     api_version: Protocol.API_VERSION,
     auth: TOKEN ? 'token' : 'loopback',
+    capabilities: ['graph.read', 'graph.write', 'library.read', 'library.write', 'collections.read', 'collections.write', 'run.read', 'run.start', 'notifications.read', 'notifications.write', 'settings.read', 'settings.write', 'net.fetch:<host>', 'secrets.use:<name>'],
+    limits: {request_body_bytes: 200000000, session_ttl_seconds: Math.floor(credentials.sessionTtlMs / 1000)},
     started_at: new Date(STARTED_AT).toISOString(),
     uptime_seconds: Math.round((Date.now() - STARTED_AT) / 1000),
     features: {
@@ -412,31 +414,7 @@ function createApiServer(options = {}) {
       net_block_private: NET_BLOCK_PRIVATE,
       tls: !!TLS,
     },
-  });  /** The API page is also a platform reference: add the HTTP-level endpoints to the generated contract. */
-  function platformOpenAPI(spec) {
-    // The contract reports the running server's version and protocol, not a literal copied from the source.
-    spec.info = {...(spec.info || {}), title: SERVER_NAME + ' API', version: SERVER_VERSION, 'x-protocol': Protocol.PROTOCOL};
-    const add = (path, method, summary, description) => {
-      spec.paths[path] = {
-        ...(spec.paths[path] || {}),
-        [method]: {summary, description, responses: {200: {description: 'Success'}}},
-      };
-    };
-    const external = 'External HTTP endpoint; it is not part of the Script agentsys() table.';
-    add('/api/meta', 'get', 'Read server version, protocol and features', 'Public discovery; no secrets. ' + external);
-    add('/api/auth/session', 'post', 'Exchange a token for an HttpOnly session', 'Body: {"token":"…"}. ' + external);
-    add('/api/auth/logout', 'post', 'End the current session', external);
-    add(
-      '/api/auth/plugin-session',
-      'post',
-      'Issue a short-lived token scoped to client plugin capabilities',
-      'Body: {"plugin_id":"my-plugin","capabilities":["graph.read", …]}. The server binds identity and enforces capabilities on every call. ' + external
-    );
-    add('/api/auth/plugin-session', 'delete', 'Revoke a scoped plugin token', 'Send the plugin token itself. ' + external);
-    add('/api/events', 'get', 'Stream change and hook events (SSE)', 'Requires a token or session cookie. ' + external);
-    add('/api/diagnostics', 'get', 'Read server diagnostics', 'Requires authentication. ' + external);
-    return spec;
-  }
+  });
   async function handleApi(req, res, url) {
     const rel = url.pathname.slice('/api/'.length).replace(/\/+$/, '');
     if (req.method === 'OPTIONS') {

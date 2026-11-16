@@ -16,5 +16,115 @@
       "graph.json": "{\n  \"format\": \"agentsys.text/1\",\n  \"value\": {\n    \"complex\": [],\n    \"cursor\": 0,\n    \"groups\": [],\n    \"library_nodes\": [],\n    \"nodes\": [],\n    \"port_edges\": [],\n    \"types\": [],\n    \"widgets\": {}\n  }\n}\n",
       "layout.json": "{\n  \"[\\\"value\\\",\\\"layout\\\"]\": {}\n}\n"
     }
-  }
+  },
+  "cases": [
+    {
+      "name": "empty",
+      "document": {
+        "cursor": 0,
+        "nodes": [],
+        "groups": [],
+        "complex": [],
+        "port_edges": [],
+        "types": [],
+        "layout": {},
+        "widgets": {},
+        "library_nodes": []
+      },
+      "packet": {
+        "format": "agentsys.text/1",
+        "files": {
+          "graph.json": "{\n  \"format\": \"agentsys.text/1\",\n  \"value\": {\n    \"complex\": [],\n    \"cursor\": 0,\n    \"groups\": [],\n    \"library_nodes\": [],\n    \"nodes\": [],\n    \"port_edges\": [],\n    \"types\": [],\n    \"widgets\": {}\n  }\n}\n",
+          "layout.json": "{\n  \"[\\\"value\\\",\\\"layout\\\"]\": {}\n}\n"
+        }
+      }
+    },
+    {
+      "name": "script-layout-unicode-opaque-runtime",
+      "document": {
+        "cursor": 0,
+        "nodes": [
+          {
+            "id": "a",
+            "kind": "custom",
+            "config": {
+              "op": "on_run",
+              "inputs": [],
+              "outputs": [
+                {
+                  "id": "out",
+                  "type": "signal"
+                }
+              ]
+            }
+          },
+          {
+            "id": "b",
+            "kind": "custom",
+            "node_type": "custom",
+            "config": {
+              "title": "Script Unicode",
+              "op": "script",
+              "inputs": [
+                {
+                  "id": "in",
+                  "name": "in",
+                  "type": "signal"
+                },
+                {
+                  "id": "script",
+                  "name": "script",
+                  "default": "node.display(\"Привет\\nworld\");"
+                }
+              ],
+              "outputs": [
+                {
+                  "id": "out",
+                  "name": "out",
+                  "type": "signal"
+                }
+              ]
+            }
+          }
+        ],
+        "groups": [],
+        "complex": [],
+        "port_edges": [],
+        "types": [],
+        "layout": {
+          "b": {
+            "x": 360,
+            "y": 0
+          },
+          "a": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "widgets": {},
+        "library_nodes": [],
+        "runtime": {
+          "nodes": [
+            {
+              "id": "z"
+            },
+            {
+              "id": "a"
+            }
+          ],
+          "nested": {
+            "value": null
+          }
+        }
+      },
+      "packet": {
+        "format": "agentsys.text/1",
+        "files": {
+          "graph.json": "{\n  \"format\": \"agentsys.text/1\",\n  \"value\": {\n    \"complex\": [],\n    \"cursor\": 0,\n    \"groups\": [],\n    \"library_nodes\": [],\n    \"nodes\": [\n      {\n        \"config\": {\n          \"inputs\": [],\n          \"op\": \"on_run\",\n          \"outputs\": [\n            {\n              \"id\": \"out\",\n              \"type\": \"signal\"\n            }\n          ]\n        },\n        \"id\": \"a\",\n        \"kind\": \"custom\"\n      },\n      {\n        \"config\": {\n          \"inputs\": [\n            {\n              \"id\": \"in\",\n              \"name\": \"in\",\n              \"type\": \"signal\"\n            },\n            {\n              \"default\": {\n                \"$script\": \"scripts/value-nodes-1-config-inputs-1-default.js\"\n              },\n              \"id\": \"script\",\n              \"name\": \"script\"\n            }\n          ],\n          \"op\": \"script\",\n          \"outputs\": [\n            {\n              \"id\": \"out\",\n              \"name\": \"out\",\n              \"type\": \"signal\"\n            }\n          ],\n          \"title\": \"Script Unicode\"\n        },\n        \"id\": \"b\",\n        \"kind\": \"custom\",\n        \"node_type\": \"custom\"\n      }\n    ],\n    \"port_edges\": [],\n    \"runtime\": {\n      \"nested\": {\n        \"value\": null\n      },\n      \"nodes\": [\n        {\n          \"id\": \"z\"\n        },\n        {\n          \"id\": \"a\"\n        }\n      ]\n    },\n    \"types\": [],\n    \"widgets\": {}\n  }\n}\n",
+          "layout.json": "{\n  \"[\\\"value\\\",\\\"layout\\\"]\": {\n    \"a\": {\n      \"x\": 0,\n      \"y\": 0\n    },\n    \"b\": {\n      \"x\": 360,\n      \"y\": 0\n    }\n  }\n}\n",
+          "scripts/value-nodes-1-config-inputs-1-default.js": "node.display(\"Привет\\nworld\");"
+        }
+      }
+    }
+  ]
 }
