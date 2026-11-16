@@ -223,7 +223,7 @@ test('exported workflows keep their types; a document without types still loads'
   await p.types([...base(), person()]);
   await p.node({outputs: [{id: 'o', name: 'o', type: T(1)}]});
   const wf = (await p.snapshot()).workflow_id;
-  const TextGraph = require('../js/storage/format');
+  const TextGraph = require('../runtime/storage/format');
   const packet = await app.api('GET', `projects/${p.id}/workflows/${wf}/export`);
   const exported = TextGraph.decode(packet);
   assert.equal(exported.document.types.length, 3);

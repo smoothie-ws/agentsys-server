@@ -1,8 +1,8 @@
 'use strict';
 // In-memory bearer/session credentials. Maps and expiry cleanup belong to this server instance.
 const crypto = require('node:crypto');
-const Protocol = require('../shared/protocol');
-const {CAPABILITY} = require('../shared/core');
+const Protocol = require('../runtime/protocol');
+const {CAPABILITY} = require('../runtime/core');
 const same = (a, b) => {
   const x = Buffer.from(String(a)), y = Buffer.from(String(b));
   return x.length === y.length && crypto.timingSafeEqual(x, y);

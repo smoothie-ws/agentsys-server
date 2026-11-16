@@ -7,7 +7,7 @@ const test = require('node:test'),
   os = require('node:os'),
   path = require('node:path');
 const {createApiServer} = require('../server/api-server');
-const Protocol = require('../shared/protocol');
+const Protocol = require('../runtime/protocol');
 
 const TOKEN = 'concurrency-token';
 const bearer = {Authorization: 'Bearer ' + TOKEN, 'Content-Type': 'application/json', 'X-AgentSys': '1'};

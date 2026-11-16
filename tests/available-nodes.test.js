@@ -2,7 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {createApp, bundleOf} = require('./harness');
-const TextGraph = require('../js/storage/format');
+const TextGraph = require('../runtime/storage/format');
 
 async function fixture() {
   const app = createApp({developer: false});

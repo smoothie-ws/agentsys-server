@@ -2,7 +2,7 @@
 // Canonical graph files, sidecars, recoverable commits and external-change fingerprints.
 const fs = require('node:fs');
 const path = require('node:path');
-const TextGraph = require('../js/storage/format');
+const TextGraph = require('../runtime/storage/format');
 
 // ----- storage layout: a key of the application <-> a file below data/ -----
 //   prefs -> settings.json        projects -> projects.json        meta -> meta.json

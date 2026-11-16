@@ -1,6 +1,4 @@
 node_modules/
-data/*
-__pycache__/
-*.py[cod]
-
 dist/
+data/
+__pycache__/

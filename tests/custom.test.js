@@ -306,7 +306,7 @@ test('importing a document with a node of an unsupported type is refused', async
     app.api(
       'POST',
       `projects/${p.id}/workflows/import`,
-      require('../js/storage/format').encode({name: 'Old', document})
+      require('../runtime/storage/format').encode({name: 'Old', document})
     ),
     /unsupported type/
   );

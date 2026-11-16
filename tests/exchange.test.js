@@ -2,7 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {createApp, fn} = require('./harness');
-const TextGraph = require('../js/storage/format');
+const TextGraph = require('../runtime/storage/format');
 
 test('graph import preserves empty group geometry and ignores execution state', async () => {
   const app = createApp();

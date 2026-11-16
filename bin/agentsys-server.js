@@ -10,7 +10,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {createApiServer} = require('../server/api-server');
-const Protocol = require('../shared/protocol');
+const Protocol = require('../runtime/protocol');
 
 const LOOPBACK = new Set(['127.0.0.1', '::1', 'localhost', '[::1]']);
 const HELP = `AgentSys Server ${Protocol.VERSION} (protocol ${Protocol.PROTOCOL})

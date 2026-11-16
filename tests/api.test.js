@@ -549,7 +549,7 @@ test('deleting a project removes its stored permission policy', async () => {
 
 test('malformed imported types and inherited shortcut names return validation errors', async () => {
   const app = createApp();
-  const TextGraph = require('../js/storage/format');
+  const TextGraph = require('../runtime/storage/format');
   const project = await app.api('POST', 'projects', {name: 'Invalid imports'});
   for (const type of [null, 42, 'invalid']) {
     await assert.rejects(

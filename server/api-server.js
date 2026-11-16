@@ -6,8 +6,8 @@ const http = require('http'),
   path = require('path');
 const {loadBackend} = require('../headless');
 const {createFileStore} = require('./file-store');
-const Protocol = require('../shared/protocol');
-const {capabilityAllows} = require('../shared/core');
+const Protocol = require('../runtime/protocol');
+const {capabilityAllows} = require('../runtime/core');
 const {createCredentials, same} = require('./credentials');
 
 const ROOT = path.resolve(__dirname, '..');
