@@ -396,6 +396,7 @@ function createApiServer(options = {}) {
     version: SERVER_VERSION,
     protocol: Protocol.PROTOCOL,
     api: '/api',
+    api_version: Protocol.API_VERSION,
     auth: TOKEN ? 'token' : 'loopback',
     started_at: new Date(STARTED_AT).toISOString(),
     uptime_seconds: Math.round((Date.now() - STARTED_AT) / 1000),
@@ -548,7 +549,7 @@ function createApiServer(options = {}) {
     if (req.method === 'GET' && rel === 'diagnostics') return sendJSON(res, 200, diagnostics());
     const {Backend} = backend;
     if (req.method === 'GET' && rel === 'openapi.json')
-      return sendJSON(res, 200, JSON.parse(JSON.stringify(platformOpenAPI(Backend.openapi()))));
+      return sendJSON(res, 200, JSON.parse(fs.readFileSync(path.join(ROOT, 'api/openapi.json'), 'utf8')));
     if (!['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method))
       return sendJSON(res, 405, {error: {message: 'method not allowed'}});
     const query = Object.fromEntries(url.searchParams);
