@@ -1,0 +1,20 @@
+{
+  "document": {
+    "cursor": 0,
+    "nodes": [],
+    "groups": [],
+    "complex": [],
+    "port_edges": [],
+    "types": [],
+    "layout": {},
+    "widgets": {},
+    "library_nodes": []
+  },
+  "packet": {
+    "format": "agentsys.text/1",
+    "files": {
+      "graph.json": "{\n  \"format\": \"agentsys.text/1\",\n  \"value\": {\n    \"complex\": [],\n    \"cursor\": 0,\n    \"groups\": [],\n    \"library_nodes\": [],\n    \"nodes\": [],\n    \"port_edges\": [],\n    \"types\": [],\n    \"widgets\": {}\n  }\n}\n",
+      "layout.json": "{\n  \"[\\\"value\\\",\\\"layout\\\"]\": {}\n}\n"
+    }
+  }
+}

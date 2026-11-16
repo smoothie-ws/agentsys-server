@@ -1,8 +1,9 @@
 {
   "info": {
-    "title": "AgentSys Public Web API",
+    "title": "AgentSys Server API",
     "version": "2.0",
-    "description": "API-major compatibility is independent of client and server application versions. See README.md for event, concurrency and authentication semantics."
+    "description": "API-major compatibility is independent of client and server application versions. See README.md for event, concurrency and authentication semantics.",
+    "x-protocol": 2
   },
   "paths": {
     "/api/session": {
@@ -3334,7 +3335,7 @@
     },
     "/api/projects/{project_id}/available-nodes": {
       "put": {
-        "summary": "Include or exclude a Library node or all current nodes in a Library group from this workflow’s Add menu",
+        "summary": "Include or exclude a Library node or all current nodes in a Library group from this workflow\u0432\u0402\u2122s Add menu",
         "description": "",
         "parameters": [
           {
@@ -3618,7 +3619,7 @@
                       "id": "script",
                       "name": "script",
                       "default": "node.display(42);",
-                      "type": "t:… (a type with the code control)"
+                      "type": "t:\u0432\u0402\u00a6 (a type with the code control)"
                     }
                   ],
                   "outputs": [
@@ -4120,7 +4121,7 @@
               "example": {
                 "splits": [
                   {
-                    "edge_id": "port:…",
+                    "edge_id": "port:\u0432\u0402\u00a6",
                     "position": {
                       "x": 0,
                       "y": 0
@@ -4369,7 +4370,7 @@
           "content": {
             "application/json": {
               "example": {
-                "node_id": "record:…",
+                "node_id": "record:\u0432\u0402\u00a6",
                 "values": {
                   "name": "Ann"
                 }
@@ -4486,7 +4487,7 @@
           "content": {
             "application/json": {
               "example": {
-                "node_id": "record:… or complex:…",
+                "node_id": "record:\u0432\u0402\u00a6 or complex:\u0432\u0402\u00a6",
                 "values": {
                   "name": "Ann"
                 }
@@ -4603,7 +4604,7 @@
           "content": {
             "application/json": {
               "example": {
-                "node_id": "record:… or complex:…",
+                "node_id": "record:\u0432\u0402\u00a6 or complex:\u0432\u0402\u00a6",
                 "values": {
                   "value": "Ann"
                 }
@@ -4965,7 +4966,7 @@
                   {
                     "id": "a",
                     "name": "a",
-                    "type": "t:… (optional)"
+                    "type": "t:\u0432\u0402\u00a6 (optional)"
                   }
                 ],
                 "outputs": [
@@ -6804,7 +6805,7 @@
                   "id": "my-plugin",
                   "name": "HTTP Request",
                   "version": "1.0.0",
-                  "checksum": "fnv1a-…"
+                  "checksum": "fnv1a-\u0432\u0402\u00a6"
                 }
               }
             }
@@ -8143,7 +8144,7 @@
         ],
         "responses": {
           "200": {
-            "description": "{format: \"agentsys.text/1\", files: {\"graph.json\": text, \"layout.json\": text, \"scripts/…js\": source}}"
+            "description": "{format: \"agentsys.text/1\", files: {\"graph.json\": text, \"layout.json\": text, \"scripts/\u0432\u0402\u00a6js\": source}}"
           },
           "400": {
             "description": "Structured API error",
@@ -10227,7 +10228,7 @@
     "/api/auth/session": {
       "post": {
         "summary": "Exchange a token for an HttpOnly session",
-        "description": "Body: {\"token\":\"…\"}. External HTTP endpoint; it is not part of the Script agentsys() table.",
+        "description": "Body: {\"token\":\"\u0432\u0402\u00a6\"}. External HTTP endpoint; it is not part of the Script agentsys() table.",
         "responses": {
           "200": {
             "description": "Success"
@@ -10411,7 +10412,7 @@
     "/api/auth/plugin-session": {
       "post": {
         "summary": "Issue a short-lived token scoped to client plugin capabilities",
-        "description": "Body: {\"plugin_id\":\"my-plugin\",\"capabilities\":[\"graph.read\", …]}. The server binds identity and enforces capabilities on every call. External HTTP endpoint; it is not part of the Script agentsys() table.",
+        "description": "Body: {\"plugin_id\":\"my-plugin\",\"capabilities\":[\"graph.read\", \u0432\u0402\u00a6]}. The server binds identity and enforces capabilities on every call. External HTTP endpoint; it is not part of the Script agentsys() table.",
         "responses": {
           "200": {
             "description": "Success"

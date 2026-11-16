@@ -1,0 +1,49 @@
+[
+  {
+    "grants": [
+      "graph.read"
+    ],
+    "need": "graph.read",
+    "allowed": true
+  },
+  {
+    "grants": [
+      "graph.read"
+    ],
+    "need": "graph.write",
+    "allowed": false
+  },
+  {
+    "grants": [
+      "net.fetch:*.example.com"
+    ],
+    "need": "net.fetch:api.example.com",
+    "allowed": true
+  },
+  {
+    "grants": [
+      "net.fetch:*.example.com"
+    ],
+    "need": "net.fetch:example.com.evil.test",
+    "allowed": false
+  },
+  {
+    "grants": [
+      "secrets.use:one"
+    ],
+    "need": "secrets.use:two",
+    "allowed": false
+  },
+  {
+    "grants": [
+      "graph.*"
+    ],
+    "need": "graph.read",
+    "allowed": true
+  },
+  {
+    "grants": [],
+    "need": "graph.read",
+    "allowed": false
+  }
+]
