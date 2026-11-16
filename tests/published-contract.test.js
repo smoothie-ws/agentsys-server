@@ -10,7 +10,7 @@ const spec = require('../api/openapi.json');
 test('published contract covers every runtime method and has no undocumented application routes', async () => {
   const runtime = loadBackend({scripts: 'inline'});
   const implementation = runtime.Backend.openapi();
-  const platform = new Set(['/api/meta', '/api/events', '/api/diagnostics', '/api/auth/session', '/api/auth/logout', '/api/auth/plugin-session']);
+  const platform = new Set(['/api/openapi.json', '/api/meta', '/api/events', '/api/diagnostics', '/api/auth/session', '/api/auth/logout', '/api/auth/plugin-session']);
   for (const [route, methods] of Object.entries(implementation.paths)) {
     assert.ok(spec.paths[route], route);
     assert.deepEqual(Object.keys(spec.paths[route]).sort(), Object.keys(methods).sort(), route);
@@ -19,6 +19,7 @@ test('published contract covers every runtime method and has no undocumented app
       assert.ok(operation.responses['401'].content['application/json']);
     }
   }
+  for (const route of platform) assert.ok(spec.paths[route], route);
   for (const route of Object.keys(spec.paths)) assert.ok(implementation.paths[route] || platform.has(route), route);
   assert.equal(spec.openapi, '3.1.0');
   assert.equal(spec.info.version, '2.0');
