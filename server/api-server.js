@@ -16,7 +16,8 @@ const send = (res, status, body, type = 'application/json; charset=utf-8') => {
   res.end(body);
 };
 const sendJSON = (res, status, value) => send(res, status, value === undefined ? '' : JSON.stringify(value));
-const readBody = (req, limit = 200e6) =>
+const BODY_LIMIT = 20e6, AUTH_BODY_LIMIT = 64 * 1024;
+const readBody = (req, limit = BODY_LIMIT) =>
   new Promise((resolve, reject) => {
     // A declared oversized body is refused before it is buffered: the client can still read the 413 answer.
     const declared = Number(req.headers['content-length']);
@@ -399,7 +400,7 @@ function createApiServer(options = {}) {
     api_version: Protocol.API_VERSION,
     auth: TOKEN ? 'token' : 'loopback',
     capabilities: ['graph.read', 'graph.write', 'library.read', 'library.write', 'collections.read', 'collections.write', 'run.read', 'run.start', 'notifications.read', 'notifications.write', 'settings.read', 'settings.write', 'net.fetch:<host>', 'secrets.use:<name>'],
-    limits: {request_body_bytes: 200000000, session_ttl_seconds: Math.floor(credentials.sessionTtlMs / 1000)},
+    limits: {request_body_bytes: BODY_LIMIT, session_ttl_seconds: Math.floor(credentials.sessionTtlMs / 1000)},
     started_at: new Date(STARTED_AT).toISOString(),
     uptime_seconds: Math.round((Date.now() - STARTED_AT) / 1000),
     features: {
@@ -435,7 +436,7 @@ function createApiServer(options = {}) {
           error: {code: 'rate_limited', message: `Too many sign-in attempts. Try again in ${wait} second(s).`},
         });
       }
-      const body = await parseJSONBody(req, 64 * 1024);
+      const body = await parseJSONBody(req, AUTH_BODY_LIMIT);
       const bearer = /^Bearer\s+(.+)$/i.exec(String(req.headers.authorization || ''))?.[1];
       const supplied = typeof body.token === 'string' ? body.token : bearer || '';
       if (TOKEN && !same(supplied, TOKEN)) {
@@ -496,7 +497,7 @@ function createApiServer(options = {}) {
       const blocked = refuse(req);
       if (blocked)
         return sendJSON(res, blocked[0], {error: {code: blocked[0] === 401 ? 'unauthorized' : 'forbidden', message: blocked[1]}});
-      const body = await parseJSONBody(req, 64 * 1024);
+      const body = await parseJSONBody(req, AUTH_BODY_LIMIT);
       let capabilities;
       try {
         capabilities = pluginCapabilities(body.capabilities);
@@ -538,7 +539,7 @@ function createApiServer(options = {}) {
       if (query.if_cursor === undefined) query.if_cursor = value;
       if (query.if_version === undefined) query.if_version = value;
     }
-    const body = req.method === 'GET' || req.method === 'DELETE' ? {} : await parseJSONBody(req, 20e6);
+    const body = req.method === 'GET' || req.method === 'DELETE' ? {} : await parseJSONBody(req, BODY_LIMIT);
     // A scoped plugin token is checked here, from the method, path and body the server is about to use — not from
     // anything the plugin claims.
     if (presented?.entry) {

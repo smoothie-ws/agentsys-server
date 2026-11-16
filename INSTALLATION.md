@@ -3,7 +3,7 @@
 Requirements: Node.js 22 or 24. No client installation is needed.
 
 ```sh
-npm install -g ./agentsys-server-0.4.0.tgz
+npm install -g ./agentsys-server-0.4.1.tgz
 agentsys-server version
 agentsys-server start --port 8080 --data ./data
 agentsys-server status --url http://127.0.0.1:8080

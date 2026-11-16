@@ -30,7 +30,8 @@ test('the HTTP contract artifact and discovery expose independent API and applic
   try {
     const base = await app.listen(0);
     const meta = await (await fetch(base + '/api/meta')).json();
-    assert.equal(meta.version, '0.4.0');
+    assert.equal(meta.version, require('../package.json').version);
+    assert.equal(meta.limits.request_body_bytes, 20e6);
     assert.equal(meta.api_version, '2.0');
     const response = await fetch(base + '/api/openapi.json', {headers: {Authorization: 'Bearer published-contract'}});
     assert.equal(response.status, 200);

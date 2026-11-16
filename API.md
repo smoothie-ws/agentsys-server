@@ -1,6 +1,6 @@
 # Public API
 
-API version 2.0 is independent of server version 0.4.0 and client releases.
+API version 2.0 is independent of server version 0.4.1 and client releases.
 Discovery: GET /api/meta. Canonical specification: api/openapi.json, also served
 by authenticated GET /api/openapi.json. Authentication, errors, concurrency,
 idempotency and SSE semantics are defined in [api/README.md](api/README.md).

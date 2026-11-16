@@ -3,8 +3,8 @@
 ## Docker
 
 ```sh
-docker build -t agentsys-server:0.4.0 .
-docker run --rm -p 8080:8080 -v agentsys-data:/data -e AGENTSYS_TOKEN agentsys-server:0.4.0 start --host 0.0.0.0 --port 8080 --data /data --allowed-origin https://client.example
+docker build -t agentsys-server:0.4.1 .
+docker run --rm -p 8080:8080 -v agentsys-data:/data -e AGENTSYS_TOKEN agentsys-server:0.4.1 start --host 0.0.0.0 --port 8080 --data /data --allowed-origin https://client.example
 ```
 
 The image contains no GUI. /data must persist across upgrades. Supply the token

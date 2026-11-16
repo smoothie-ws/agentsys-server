@@ -32,3 +32,5 @@ the documented execution endpoints. Aborting HTTP is not execution cancellation.
 Errors have {error:{code,message}}; clients must not inspect server exceptions.
 The specification is a versioned release artifact owned by the server. Route
 parity tests compare it against the running implementation to detect drift.
+
+Request limits: application JSON bodies are capped at 20,000,000 bytes; session and plugin-session request bodies at 65,536 bytes. Discovery limits.request_body_bytes reports the application limit enforced by the same server constant.
