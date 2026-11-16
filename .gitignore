@@ -6,3 +6,4 @@ extraction-tests.txt
 *.tgz
 package-result.json
 restored-tests.txt
+*-tests.txt

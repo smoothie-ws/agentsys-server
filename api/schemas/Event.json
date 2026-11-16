@@ -30,6 +30,9 @@
     "server_time": {
       "type": "string",
       "format": "date-time"
+    },
+    "entry": {
+      "type": "object"
     }
   }
 }

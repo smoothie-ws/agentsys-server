@@ -207,6 +207,9 @@
               "example": {
                 "undo_steps": 50,
                 "developer_mode": false
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -427,7 +430,17 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LibraryResource"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Structured API error",
@@ -527,6 +540,9 @@
                 "payload": {
                   "bundle": {}
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -745,6 +761,9 @@
               "example": {
                 "name": "My node",
                 "payload": {}
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -1046,7 +1065,17 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Structured API error",
@@ -1143,13 +1172,23 @@
             "application/json": {
               "example": {
                 "name": "My project"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
           },
           "400": {
             "description": "Structured API error",
@@ -1360,6 +1399,9 @@
             "application/json": {
               "example": {
                 "name": "New name"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -1472,6 +1514,9 @@
             "application/json": {
               "example": {
                 "name": "New name"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -1897,6 +1942,9 @@
             "application/json": {
               "example": {
                 "name": "Workflow"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -2019,6 +2067,9 @@
             "application/json": {
               "example": {
                 "name": "New name"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -2477,6 +2528,9 @@
                 "wait": false,
                 "node_ids": [],
                 "input_port": null
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -2930,7 +2984,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Nodes with their ports, wires, groups and diagnostics, and the undo and redo depth"
+            "description": "Nodes with their ports, wires, groups and diagnostics, and the undo and redo depth",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphDocument"
+                }
+              }
+            }
           },
           "400": {
             "description": "Structured API error",
@@ -3360,6 +3421,9 @@
               "example": {
                 "resource_id": "Library resource ID",
                 "enabled": true
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -3492,6 +3556,9 @@
                   "x": 0,
                   "y": 0
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -3634,6 +3701,9 @@
                   "x": 0,
                   "y": 0
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -3752,6 +3822,9 @@
                   "x": 0,
                   "y": 0
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -3874,6 +3947,9 @@
             "application/json": {
               "example": {
                 "event": "on_run"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4006,6 +4082,9 @@
                     }
                   ]
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4128,6 +4207,9 @@
                     }
                   }
                 ]
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4257,6 +4339,9 @@
                     "value": ""
                   }
                 ]
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4374,6 +4459,9 @@
                 "values": {
                   "name": "Ann"
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4491,6 +4579,9 @@
                 "values": {
                   "name": "Ann"
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4608,6 +4699,9 @@
                 "values": {
                   "value": "Ann"
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4841,6 +4935,9 @@
                     ]
                   }
                 ]
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -4975,6 +5072,9 @@
                     "name": "result"
                   }
                 ]
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -5097,6 +5197,9 @@
                   }
                 ],
                 "remove": []
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -5220,6 +5323,9 @@
               "example": {
                 "wrap": true,
                 "collapsed": false
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -5340,6 +5446,9 @@
                     "members": []
                   }
                 ]
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -5575,6 +5684,9 @@
               "example": {
                 "node_ids": [],
                 "dissolve": false
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -5690,6 +5802,9 @@
               "example": {
                 "node_ids": [],
                 "group_ids": []
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -5810,6 +5925,9 @@
                   "x": 0,
                   "y": 0
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -5928,6 +6046,9 @@
                 "color": "#3b6ea8",
                 "folded": false,
                 "disabled": false
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -6043,6 +6164,9 @@
               "example": {
                 "node_id": "node id",
                 "title": "Name"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -6162,6 +6286,9 @@
                     "y": 0
                   }
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -6279,6 +6406,9 @@
                   "node id"
                 ],
                 "collect": true
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -6576,6 +6706,9 @@
                 "action": "create",
                 "path": "",
                 "name": "Logic"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -6690,6 +6823,9 @@
             "application/json": {
               "example": {
                 "folder": "Logic"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -6807,6 +6943,9 @@
                   "version": "1.0.0",
                   "checksum": "fnv1a-\u0432\u0402\u00a6"
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -6913,6 +7052,9 @@
               "example": {
                 "resource_id": null,
                 "folder": ""
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -7025,7 +7167,10 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "example": {}
+              "example": {},
+              "schema": {
+                "type": "object"
+              }
             }
           }
         },
@@ -7274,6 +7419,9 @@
                 "grants": [
                   "graph.read"
                 ]
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -7499,6 +7647,9 @@
                   ],
                   "deny_private": true
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -8025,6 +8176,9 @@
                   "x": 0,
                   "y": 0
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -8256,6 +8410,9 @@
                   "graph.json": "{\n  \"format\": \"agentsys.text/1\",\n  \"value\": {\n    \"document\": {\n      \"complex\": [],\n      \"groups\": [],\n      \"nodes\": [],\n      \"port_edges\": [],\n      \"types\": [],\n      \"widgets\": {}\n    },\n    \"kind\": \"workflow\",\n    \"name\": \"optional new name\"\n  }\n}\n",
                   "layout.json": "{\n  \"[\\\"value\\\",\\\"document\\\",\\\"layout\\\"]\": {}\n}\n"
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -8470,6 +8627,9 @@
                   "graph.json": "{\n  \"format\": \"agentsys.text/1\",\n  \"value\": {\n    \"kind\": \"project\",\n    \"name\": \"My project\",\n    \"workflows\": [\n      {\n        \"document\": {},\n        \"name\": \"Main\"\n      }\n    ]\n  }\n}\n",
                   "layout.json": "{}\n"
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -8689,6 +8849,9 @@
                 "level": "info|success|warn|error",
                 "href": "/projects",
                 "source": "optional"
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -8998,7 +9161,17 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Collection"
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "Structured API error",
@@ -9111,6 +9284,9 @@
                   "type": "object",
                   "properties": {}
                 }
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -9473,6 +9649,9 @@
             "application/json": {
               "example": {
                 "data": {}
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -9720,6 +9899,9 @@
             "application/json": {
               "example": {
                 "data": {}
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -10037,6 +10219,9 @@
             "application/json": {
               "example": {
                 "restore": false
+              },
+              "schema": {
+                "type": "object"
               }
             }
           }
@@ -10138,7 +10323,14 @@
         "description": "Public discovery; no secrets. External HTTP endpoint; it is not part of the Script agentsys() table.",
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Discovery"
+                }
+              }
+            }
           },
           "400": {
             "description": "Structured API error",
@@ -10231,7 +10423,14 @@
         "description": "Body: {\"token\":\"\u0432\u0402\u00a6\"}. External HTTP endpoint; it is not part of the Script agentsys() table.",
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
           },
           "400": {
             "description": "Structured API error",
@@ -10864,6 +11063,9 @@
           "server_time": {
             "type": "string",
             "format": "date-time"
+          },
+          "entry": {
+            "type": "object"
           }
         }
       },
@@ -10916,6 +11118,204 @@
           },
           "widgets": {
             "type": "object"
+          }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "workflow_count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "Workflow": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "LibraryResource": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "payload"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      },
+      "CollectionRecord": {
+        "type": "object",
+        "required": [
+          "id",
+          "data",
+          "version"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "Collection": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "object"
+          }
+        }
+      },
+      "Permissions": {
+        "type": "object",
+        "properties": {
+          "allow": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "grants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Discovery": {
+        "type": "object",
+        "required": [
+          "agentsys",
+          "product",
+          "version",
+          "protocol",
+          "api_version",
+          "features",
+          "auth"
+        ],
+        "properties": {
+          "agentsys": {
+            "const": true
+          },
+          "product": {
+            "const": "agentsys"
+          },
+          "version": {
+            "type": "string"
+          },
+          "protocol": {
+            "type": "integer"
+          },
+          "api_version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+$"
+          },
+          "features": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            }
+          },
+          "auth": {
+            "enum": [
+              "token",
+              "loopback"
+            ]
+          },
+          "server_name": {
+            "type": "string"
+          },
+          "api": {
+            "const": "/api"
+          }
+        }
+      },
+      "Session": {
+        "type": "object",
+        "required": [
+          "ok",
+          "mode",
+          "expires_in"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "expires_in": {
+            "type": "integer"
+          }
+        }
+      },
+      "Execution": {
+        "type": "object",
+        "properties": {
+          "dispatch_status": {
+            "type": "string"
+          },
+          "outputs": {
+            "type": "object"
+          },
+          "displays": {
+            "type": "object"
+          },
+          "errors": {
+            "type": "array",
+            "items": {}
           }
         }
       }

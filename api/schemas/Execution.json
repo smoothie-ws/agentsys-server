@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "dispatch_status": {
+      "type": "string"
+    },
+    "outputs": {
+      "type": "object"
+    },
+    "displays": {
+      "type": "object"
+    },
+    "errors": {
+      "type": "array",
+      "items": {}
+    }
+  }
+}
