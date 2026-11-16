@@ -21,3 +21,14 @@ jobs:
         with:
           name: server-${{ matrix.os }}-${{ matrix.node }}
           path: '*.tgz'
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t agentsys-server:ci .
+      - run: docker run -d --name agentsys-ci -p 8080:8080 -e AGENTSYS_TOKEN=ci-container-token agentsys-server:ci
+      - run: curl --retry 20 --retry-connrefused --retry-delay 1 --fail http://127.0.0.1:8080/api/meta
+      - run: test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/index.html)" = 404
+      - if: always()
+        run: docker logs agentsys-ci
