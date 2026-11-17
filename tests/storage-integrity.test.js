@@ -10,7 +10,11 @@ const test = require('node:test'),
 const {createApiServer} = require('../server/api-server');
 
 const TOKEN = 'storage-token';
-const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'agentsys-storage-'));
+const tmp = () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'agentsys-storage-'));
+  require('../server/store-format').checkStoreFormat(dir, {initialize: true});
+  return dir;
+};
 const clean = dir => fs.rmSync(dir, {recursive: true, force: true});
 const read = (dir, ...parts) => fs.readFileSync(path.join(dir, ...parts), 'utf8');
 const exists = (dir, ...parts) => fs.existsSync(path.join(dir, ...parts));
@@ -243,8 +247,8 @@ test('a copy of a stopped data folder is a complete backup, including a pending 
     fs.writeFileSync(
       path.join(copy, '.transaction.json'),
       JSON.stringify({set: {'collection:notes': [
-        {id: 'r1', data: {text: 'kept'}, created: 1, updated: 1},
-        {id: 'r2', data: {text: 'from the interrupted commit'}, created: 2, updated: 2},
+        {id: 'r1', data: {text: 'kept'}, created: 1, updated: 1, version: 1},
+        {id: 'r2', data: {text: 'from the interrupted commit'}, created: 2, updated: 2, version: 1},
       ]}, remove: []})
     );
     const restored = await boot(copy);
@@ -378,36 +382,20 @@ test('a deleted workflow does not leave its script folder behind', async () => {
   }
 });
 
-test('records stored before versions existed read as version 1 and become conditional after one write', async () => {
+test('record revisions survive restart and reject stale conditional writes', async () => {
   const dir = tmp();
   try {
-    // A folder written by the previous release: definitions and records without a `version` field.
-    fs.mkdirSync(path.join(dir, 'other'), {recursive: true});
-    fs.writeFileSync(
-      path.join(dir, 'other', 'collections.json'),
-      JSON.stringify({legacy: {title: 'Legacy', description: '', schema: {type: 'object'}, updated: 1}})
-    );
-    fs.writeFileSync(
-      path.join(dir, 'other', 'collection__legacy.json'),
-      JSON.stringify([{id: 'r1', data: {text: 'old'}, created: 1, updated: 1}])
-    );
+    const first = await boot(dir);
+    await first.call('PUT', 'collections/notes', {schema: {type: 'object'}});
+    const record = await first.call('POST', 'collections/notes/records', {data: {text: 'first'}});
+    await first.app.close();
     const {app, call} = await boot(dir);
     try {
-      const list = await call('GET', 'collections/legacy/records');
-      assert.equal(list.records.length, 1);
-      assert.equal(list.records[0].version, 1);
-      const written = await call('PUT', 'collections/legacy/records/r1', {data: {text: 'new'}}, {if_version: '1'});
+      const written = await call('PUT', 'collections/notes/records/' + record.id, {data: {text: 'next'}}, {if_version: '1'});
       assert.equal(written.version, 2);
-      await assert.rejects(
-        call('PUT', 'collections/legacy/records/r1', {data: {text: 'stale'}}, {if_version: '1'}),
-        error => error.code === 'conflict'
-      );
-    } finally {
-      await app.close();
-    }
-  } finally {
-    clean(dir);
-  }
+      await assert.rejects(call('PUT', 'collections/notes/records/' + record.id, {data: {}}, {if_version: '1'}), {code: 'conflict'});
+    } finally { await app.close(); }
+  } finally { clean(dir); }
 });
 
 test('undo history is per process: a restart keeps the document but not the history', async () => {

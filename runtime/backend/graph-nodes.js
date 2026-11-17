@@ -24,7 +24,7 @@ function scriptNodePayload({
     description,
     grants,
     bundle: {
-      version: 3,
+      version: 1,
       source_project: 'lib-builtin.' + key,
       types: [
         {id: text.slice(2), name: 'text', color: '#669ed6', fields: [], control: 'textarea'},

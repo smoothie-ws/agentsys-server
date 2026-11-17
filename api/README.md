@@ -1,10 +1,7 @@
-# Public Web API 2.0
+# Public Web API 1.0
 
 Canonical specification: openapi.json. JSON schemas use draft 2020-12.
-The /api prefix is stable; /api/meta advertises api_version. Major denotes breaking
-changes; minor denotes compatible additions. Application versions are independent.
-The integer protocol field and x-agentsys-protocol header carry the API major.
-Clients negotiate the major and discover optional features from meta.features.
+The /api prefix identifies the public API. /api/meta advertises api_version "1.0" and protocol 1. The x-agentsys-protocol header is 1. Application versions are metadata. Optional features are reported in meta.features.
 
 Authentication: use Authorization: Bearer for cross-origin REST and fetch-based
 SSE. POST /api/auth/session exchanges the initial token for an HttpOnly cookie;

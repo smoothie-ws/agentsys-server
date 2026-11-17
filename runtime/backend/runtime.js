@@ -641,6 +641,6 @@ const Backend = {
           'x-needs': r.needs[method],
         };
     }
-    return {info: {title: 'AgentSys Server API', version: '0.3.0'}, paths};
+    return {info: {title: 'AgentSys Server API', version: '1.0'}, paths};
   },
 };

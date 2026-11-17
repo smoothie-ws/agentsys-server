@@ -3,6 +3,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const TextGraph = require('../runtime/storage/format');
+const {checkStoreFormat} = require('./store-format');
 
 // ----- storage layout: a key of the application <-> a file below data/ -----
 //   prefs -> settings.json        projects -> projects.json        meta -> meta.json
@@ -105,6 +106,7 @@ const stampOf = file => {
 };
 
 function createFileStore(DATA) {
+  checkStoreFormat(DATA, {initialize: true});
   const abs = key => path.join(DATA, ...fileOf(key).split('/'));
   const stamps = entries => {
     const grouped = new Map();

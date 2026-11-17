@@ -71,7 +71,11 @@ async function collectionDefinition(c, name) {
 }
 
 const recordsKey = name => `collection:${name}`;
-const versionOf = record => record.version ?? 1;
+const versionOf = record => {
+  if (!Number.isSafeInteger(record.version) || record.version < 1)
+    throw new ApiError('invalid_storage', 'A stored collection record has an invalid revision.', 500);
+  return record.version;
+};
 const publicRecord = record => ({
   id: record.id,
   data: clone(record.data),

@@ -44,11 +44,11 @@ test('generic Request executes through net with HTTP fields and needs no plugin 
   assert.deepEqual(result.outputs[request.wrapper], {status: 201, response: 'HTTP answer'});
 });
 
-test('HTTP headers and legacy options stay HTTP options and cannot select an application route', async () => {
+test('HTTP headers and nested options stay HTTP options and cannot select an application route', async () => {
   const run = new (Object.getPrototypeOf(async function () {}).constructor)('node', 'agentsys', HTTP_CODE);
   for (const input of [
     {url: 'https://request.test/', method: 'PATCH', headers: {'X-Test': 'yes'}, body: 'body', timeout: 1234},
-    {request: {url: 'https://request.test/legacy', method: 'DELETE'}, endpoint: 'plugins/other/call'},
+    {request: {url: 'https://request.test/nested', method: 'DELETE'}, endpoint: 'plugins/other/call'},
   ]) {
     const node = {input, output: {}};
     await run(node, async (method, route, options) => {

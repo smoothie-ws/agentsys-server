@@ -192,7 +192,7 @@ function loadBackend({root, store = null, scripts = 'worker', allowedNetHosts = 
   if (blockPrivateNet) sandbox.AGENTSYS_NET_BLOCK_PRIVATE = true;
   // The pinned transport is only used for a deny-private policy; ordinary calls keep the fetch semantics.
   sandbox.AGENTSYS_HTTP_REQUEST = pinnedRequest;
-  // Only the trusted backend sees this: a Script runs in a worker (or in the legacy inline sandbox) and has no API
+  // Only the trusted backend sees this: a Script runs in a worker (or in the in-memory test sandbox) and has no API
   // to reach it. The net route uses it to refuse private destinations before a connection is made.
   try {
     const dns = require('node:dns');

@@ -34,8 +34,4 @@ const FILES = [
   'runtime/backend/routes-builtin.js',
 ];
 
-/** Server-only files: the static Client must never send these to a browser, including retired paths. */
-const SERVER_ONLY =
-  /^(?:server\.js$|js\/storage\/db\.js$|js\/model\/(?:executor|editor|snapshot|evaluate|schema|documents)\.js$|js\/backend\/|server\/|bin\/|legacy\/|headless\.js$)/;
-
-module.exports = {FILES, SERVER_ONLY};
+module.exports = {FILES};

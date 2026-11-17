@@ -6,6 +6,7 @@ const http = require('http'),
   path = require('path');
 const {loadBackend} = require('../headless');
 const {createFileStore} = require('./file-store');
+const {checkStoreFormat} = require('./store-format');
 const Protocol = require('../runtime/protocol');
 const {capabilityAllows} = require('../runtime/core');
 const {createCredentials, same} = require('./credentials');
@@ -102,6 +103,7 @@ function createApiServer(options = {}) {
       return error.code === 'EPERM';
     }
   };
+  checkStoreFormat(DATA);
   if (!ALLOW_SHARED_DATA) {
     fs.mkdirSync(DATA, {recursive: true});
     for (let attempt = 0; attempt < 2; attempt++) {
@@ -269,8 +271,6 @@ function createApiServer(options = {}) {
     backendError = error;
   }
   if (backend) backend.Backend.subscribeHooks(entry => broadcastEvent({type: 'hook', entry}));
-  // Server plugins do not exist in this architecture. The old host remains in git history as a migration
-  // reference; it is never loaded and no file below data/plugins/ is executed by the server.
 
   // Files are watched by comparing stamps: a page open gets the news within a second, and the backend forgets what it
   // had cached of a file that was edited on disk. With no page open the tree is looked at every few seconds only.

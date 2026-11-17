@@ -310,6 +310,7 @@ test('asynchronous file polling still detects external Script and layout edits',
 
 test('an interrupted commit is replayed once, and an unreadable record does not stop the server', async () => {
   const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'agentsys-transaction-'));
+  require('../server/store-format').checkStoreFormat(dataDir, {initialize: true});
   const project = {
     id: 'recoveredproject',
     name: 'Recovered',

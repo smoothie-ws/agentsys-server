@@ -143,7 +143,7 @@ test('Complex Nodes are built in the Library editor and behave as plain nodes in
 test('Custom Node groups form a tree: create, nest, move, rename, delete with contents', async () => {
   const app = createApp();
   const bundle = {
-    version: 3,
+    version: 1,
     groups: [{id: 'g', name: 'N', members: [], parent: null, position: {x: 0, y: 0}}],
     complex: [{id: 'g', interface: {inputs: [], outputs: []}}],
     notes: [],
@@ -348,7 +348,7 @@ test('a node can be folded; the fold is saved, copied and validated', async () =
 
 test('deleting a Library group deletes its groups and Custom Nodes with it', async () => {
   const app = createApp();
-  const bundle = {version: 3, groups: [{id: 'g', name: 'N', members: [], parent: null}], complex: []};
+  const bundle = {version: 1, groups: [{id: 'g', name: 'N', members: [], parent: null}], complex: []};
   const node = (name, folder) => app.api('POST', 'resources', {name, payload: {bundle, folder}});
   await app.api('POST', 'library/node-folders', {action: 'create', path: '', name: 'Logic'});
   await app.api('POST', 'library/node-folders', {action: 'create', path: 'Logic', name: 'Text'});
@@ -506,7 +506,7 @@ test('duplicate names stay unique and within 100 characters for workflows and Li
   const resource = await app.api('POST', 'resources', {
     name: 'N'.repeat(100),
     payload: {
-      bundle: {version: 3, groups: [{id: 'g', name: 'N', members: [], parent: null}], complex: []},
+      bundle: {version: 1, groups: [{id: 'g', name: 'N', members: [], parent: null}], complex: []},
     },
   });
   for (const route of [
@@ -570,7 +570,7 @@ test('deleting a Library group also reconciles types owned only by its removed n
     payload: {
       folder: 'Disposable',
       bundle: {
-        version: 3,
+        version: 1,
         types: [{id, name: 'Disposable type', fields: []}],
         groups: [{id: 'g', name: 'Owner', members: [], parent: null}],
         complex: [],

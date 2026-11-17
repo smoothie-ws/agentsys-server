@@ -7,10 +7,10 @@
   'use strict';
   const NAME = 'AgentSys';
   const PRODUCT = 'agentsys';
-  // Bump when a client of the previous version can no longer work against this server.
-  const PROTOCOL = 2;
-  const VERSION = '0.4.1';
-  const API_VERSION = '2.0';
+  // The single supported API contract.
+  const PROTOCOL = 1;
+  const VERSION = '0.1.0';
+  const API_VERSION = '1.0';
   const META_PATH = '/api/meta';
   const EVENTS_PATH = '/api/events';
   const SESSION_PATH = '/api/auth/session';
@@ -21,16 +21,6 @@
   const HEADER = 'x-agentsys-protocol';
   const CSRF_HEADER = 'x-agentsys';
   const CLIENT_HEADER = 'x-agentsys-client';
-
-  /** True when this client can speak to a server that reports `protocol`. */
-  const compatible = protocol => Number.isInteger(protocol) && protocol === PROTOCOL;
-
-  /** A short human-readable reason for an incompatible server, or '' when it is compatible. */
-  const incompatibility = protocol => {
-    if (!Number.isInteger(protocol)) return 'The server did not report an AgentSys protocol version.';
-    if (protocol < PROTOCOL) return `The server speaks protocol ${protocol}; this client needs ${PROTOCOL}. Update the server.`;
-    return `The server speaks protocol ${protocol}; this client supports ${PROTOCOL}. Update the client.`;
-  };
 
   return {
     NAME,
@@ -48,7 +38,5 @@
     HEADER,
     CSRF_HEADER,
     CLIENT_HEADER,
-    compatible,
-    incompatibility,
   };
 });

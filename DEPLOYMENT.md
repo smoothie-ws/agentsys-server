@@ -3,8 +3,8 @@
 ## Docker
 
 ```sh
-docker build -t agentsys-server:0.4.1 .
-docker run --rm -p 8080:8080 -v agentsys-data:/data -e AGENTSYS_TOKEN agentsys-server:0.4.1 start --host 0.0.0.0 --port 8080 --data /data --allowed-origin https://client.example
+docker build -t agentsys-server:0.1.0 .
+docker run --rm -p 8080:8080 -v agentsys-data:/data -e AGENTSYS_TOKEN agentsys-server:0.1.0 start --host 0.0.0.0 --port 8080 --data /data --allowed-origin https://client.example
 ```
 
 The image contains no GUI. /data must persist across upgrades. Supply the token
@@ -36,3 +36,5 @@ Adjust executable paths for your installation. Health: GET /api/meta; operationa
 diagnostics: authenticated GET /api/diagnostics. Stop gracefully before restoring
 data. Test backups before upgrading; versioned release artifacts include the API
 contract. Server and client upgrades are independent within API major 2.
+
+Use a new empty directory for the initial store. Its marker is `.agentsys-store.json` with `{"format":"agentsys.store/1"}`. A nonempty unmarked or unsupported directory is refused without changing files. Backups include this marker.

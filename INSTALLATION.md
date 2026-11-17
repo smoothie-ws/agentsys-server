@@ -3,7 +3,7 @@
 Requirements: Node.js 22 or 24. No client installation is needed.
 
 ```sh
-npm install -g ./agentsys-server-0.4.1.tgz
+npm install -g ./agentsys-server-0.1.0.tgz
 agentsys-server version
 agentsys-server start --port 8080 --data ./data
 agentsys-server status --url http://127.0.0.1:8080
@@ -18,3 +18,5 @@ from the source distribution. Do not run two servers against one data directory.
 
 Source installation needs no npm dependencies: `node bin/agentsys-server.js start`.
 Build an npm artifact with `npm pack`. CLI status exits nonzero when unreachable.
+
+Use a new empty directory for the initial store. Its marker is `.agentsys-store.json` with `{"format":"agentsys.store/1"}`. A nonempty unmarked or unsupported directory is refused without changing files. Backups include this marker.

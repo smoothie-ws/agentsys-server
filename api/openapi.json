@@ -1,9 +1,9 @@
 {
   "info": {
     "title": "AgentSys Server API",
-    "version": "2.0",
-    "description": "API-major compatibility is independent of client and server application versions. See README.md for event, concurrency and authentication semantics.",
-    "x-protocol": 2
+    "version": "1.0",
+    "description": "AgentSys public API 1. The sole supported MVP contract.",
+    "x-protocol": 1
   },
   "paths": {
     "/api/session": {
@@ -5919,7 +5919,7 @@
             "application/json": {
               "example": {
                 "clipboard": {
-                  "version": 3
+                  "version": 1
                 },
                 "point": {
                   "x": 0,
@@ -6502,102 +6502,6 @@
           "run.start"
         ],
         "operationId": "post__api_projects__project_id__evaluate_node"
-      }
-    },
-    "/api/library/sections": {
-      "get": {
-        "summary": "List server-registered Library sections (none by design)",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "413": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Structured API error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "x-needs": [
-          "library.read"
-        ],
-        "operationId": "get__api_library_sections"
       }
     },
     "/api/library/node-folders": {

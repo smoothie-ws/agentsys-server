@@ -2,10 +2,6 @@
 // (a private workflow whose id is "lib-<resource id>").
 'use strict';
 
-// Library sections used to be registered by server plugins. A server has none now; a client plugin can add a
-// section in its own interface. The endpoint stays so older clients do not break.
-route('GET', 'library/sections', 'List server-registered Library sections (none by design)', async () => []);
-
 // ----- Library groups for Custom Nodes: a tree of named groups, stored apart from the nodes -----
 // parentPath and underPath are shared with the client (runtime/core.js).
 /** Stored groups plus every level of the group path of each item (imported items name a group that may not exist yet). */
@@ -132,7 +128,7 @@ route(
       if (!owner || owner !== claimed)
         throw new ApiError('permission_denied', 'This Library node is not owned by that plugin; it was not changed.', 403);
       if (!existing.payload.plugin.contentChecksum)
-        throw new ApiError('resource_conflict', 'This legacy Library node has no edit baseline. Back it up and explicitly redeploy it before updating.', 409);
+        throw new ApiError('resource_conflict', 'This Library node has no deployment edit baseline. Export it and explicitly redeploy it before replacing it.', 409);
       if (existing.payload.plugin.contentChecksum !== resourceContentChecksum(existing.payload))
         throw new ApiError('resource_conflict', 'This Library node was edited after deployment; preserve or duplicate those edits before updating.', 409);
     }

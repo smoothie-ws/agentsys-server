@@ -22,7 +22,7 @@ test('published contract covers every runtime method and has no undocumented app
   for (const route of platform) assert.ok(spec.paths[route], route);
   for (const route of Object.keys(spec.paths)) assert.ok(implementation.paths[route] || platform.has(route), route);
   assert.equal(spec.openapi, '3.1.0');
-  assert.equal(spec.info.version, '2.0');
+  assert.equal(spec.info.version, '1.0');
 });
 test('the HTTP contract artifact and discovery expose independent API and application versions', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'agentsys-published-'));
@@ -32,7 +32,7 @@ test('the HTTP contract artifact and discovery expose independent API and applic
     const meta = await (await fetch(base + '/api/meta')).json();
     assert.equal(meta.version, require('../package.json').version);
     assert.equal(meta.limits.request_body_bytes, 20e6);
-    assert.equal(meta.api_version, '2.0');
+    assert.equal(meta.api_version, '1.0');
     const response = await fetch(base + '/api/openapi.json', {headers: {Authorization: 'Bearer published-contract'}});
     assert.equal(response.status, 200);
     assert.deepEqual(await response.json(), spec);

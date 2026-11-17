@@ -196,7 +196,7 @@ test('the event stream refuses an anonymous caller and reports changes to an aut
       text += decoder.decode(value, {stream: true});
     }
     assert.match(text, /"type":"ready"/);
-    assert.match(text, /"protocol":2/);
+    assert.match(text, /"protocol":1/);
     controller.abort();
     await reader.cancel().catch(() => {});
   });
@@ -324,7 +324,7 @@ test('the generated contract matches the routes and reports the running version'
   await withServer({}, async ({base}) => {
     const spec = await (await request(base, 'openapi.json', {headers: bearer})).json();
     assert.equal(spec.info.version, require('../runtime/protocol').API_VERSION);
-    assert.equal(spec.info['x-protocol'], 2);
+    assert.equal(spec.info['x-protocol'], 1);
     for (const route of ['/api/projects', '/api/projects/{project_id}/workflow', '/api/collections/{name}/records', '/api/events', '/api/meta'])
       assert.ok(spec.paths[route], `the contract documents ${route}`);
     // Every documented operation has a summary and responses; no operation is a client-only route.

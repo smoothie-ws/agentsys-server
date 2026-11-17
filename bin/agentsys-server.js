@@ -6,7 +6,7 @@
 //   agentsys-server status
 //   agentsys-server version
 //
-// The server never serves the client and never loads plugins. See docs/server.md.
+// The server never serves the client and never loads plugins. See ARCHITECTURE.md.
 const fs = require('node:fs');
 const path = require('node:path');
 const {createApiServer} = require('../server/api-server');

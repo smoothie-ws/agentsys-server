@@ -86,7 +86,7 @@ test('an editable output of a Complex Node (a Library node that is only a frame,
     {id} = await app.api('POST', 'projects', {name: 'P'}),
     q = {workflow_id: id};
   const bundle = (outputs, types) => ({
-    version: 3,
+    version: 1,
     source_project: 'lib-x',
     types,
     records: [],
@@ -148,7 +148,7 @@ test('a placed Library node that was saved again is brought up to date once: rea
     {id} = await app.api('POST', 'projects', {name: 'P'}),
     q = {workflow_id: id};
   const bundle = code => ({
-    version: 3,
+    version: 1,
     source_project: 'lib-x',
     types: [],
     port_edges: [],
@@ -219,7 +219,7 @@ test('two Library nodes that each define the same type (Text and Preview both ha
     q = {workflow_id: id};
   const make = async (name, T, port) => {
     const bundle = {
-      version: 3,
+      version: 1,
       source_project: 'lib-' + name,
       types: [{id: T, name: 'text', fields: [], control: 'textarea'}],
       port_edges: [],

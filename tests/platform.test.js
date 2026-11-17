@@ -45,7 +45,7 @@ test('an API-only server reports its protocol and serves no client or server plu
     const meta = await (await fetch(base + '/api/meta')).json();
     assert.equal(meta.agentsys, true);
     assert.equal(meta.product, 'agentsys');
-    assert.equal(meta.protocol, 2);
+    assert.equal(meta.protocol, 1);
     assert.equal(meta.features.server_plugins, false);
     assert.equal(meta.features.client_plugins, false);
     assert.equal((await fetch(base + '/')).status, 404);
@@ -54,7 +54,7 @@ test('an API-only server reports its protocol and serves no client or server plu
     for (const route of ['/__data', '/__data/events', '/editor/api/projects', '/api/migration/ui-state'])
       assert.equal((await fetch(base + route, {headers: token})).status, 404, route);
     assert.equal((await call(base, 'PUT', 'ui-state', {values: {}}, token)).status, 404);
-    assert.deepEqual((await call(base, 'GET', 'library/sections', undefined, token)).body, []);
+    assert.equal((await call(base, 'GET', 'library/sections', undefined, token)).status, 404);
     const diagnostics = await call(base, 'GET', 'diagnostics', undefined, token);
     assert.equal(diagnostics.status, 200);
     assert.equal(typeof diagnostics.body.uptime_seconds, 'number');

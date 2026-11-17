@@ -33,10 +33,9 @@ const underPath = (value, root) => value === root || value.startsWith(root + '/'
 const GRAPH_RANGES = {node_radius: [0, 42], group_radius: [0, 54], wire_width: [1, 5], wire_curve: [10, 100]};
 const WIRE_STYLE_IDS = ['bezier', 'linear', 'step', 'rounded'];
 
-// A node's grants are checked in the editor as well as by the server. `plugins.call` remains accepted for
-// projects made before the server plugin architecture was removed; no server route grants it now.
+// Node capability syntax.
 const CAPABILITY =
-  /^(graph\.(read|write)|library\.(read|write)|collections\.(read|write)|net\.fetch:[A-Za-z0-9.*:\[\]-]+|run\.(read|start)|notifications\.(read|write)|settings\.(read|write)|plugins\.call|secrets\.use:[A-Za-z0-9_-]+)$/;
+  /^(graph\.(read|write)|library\.(read|write)|collections\.(read|write)|net\.fetch:[A-Za-z0-9.*:\[\]-]+|run\.(read|start)|notifications\.(read|write)|settings\.(read|write)|secrets\.use:[A-Za-z0-9_-]+)$/;
 
 /** Whether a capability list allows `need`. A `*` inside a capability stands for any run of characters. */
 function capabilityAllows(list, need) {

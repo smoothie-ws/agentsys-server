@@ -161,7 +161,7 @@ function bundleOf(
           : {...p, bound: [{node_id: id(node ?? keys[0]), port_id: port ?? p.id}]}
     );
   const bundle = {
-    version: 3,
+    version: 1,
     source_project: 'lib-' + hex(name),
     types,
     records: keys.map((key, i) => ({

@@ -19,7 +19,7 @@ const allows = (list, capability) =>
   list.some(value => value === capability || (value.endsWith(':*') && capability.startsWith(value.slice(0, -1))));
 // An optional server-wide egress allowlist (`AGENTSYS_ALLOW_NET` / `allowedNetHosts`): a pattern may contain `*`.
 const NET_ALLOW = typeof AGENTSYS_NET_ALLOW !== 'undefined' && Array.isArray(AGENTSYS_NET_ALLOW) ? AGENTSYS_NET_ALLOW : [];
-// A deployment may refuse private, loopback and link-local destinations. It is off by default for compatibility,
+// A deployment may refuse private, loopback and link-local destinations. The policy is explicitly configured,
 // and a project policy can turn it on for its own Scripts (see routes-permissions.js).
 const NET_BLOCK_PRIVATE = typeof AGENTSYS_NET_BLOCK_PRIVATE !== 'undefined' && AGENTSYS_NET_BLOCK_PRIVATE === true;
 /** Host and port, lower-case, without the trailing root dot: `example.com.` is the same DNS name as `example.com`. */

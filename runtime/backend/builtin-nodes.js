@@ -59,7 +59,7 @@ const BUILTIN_NODES = [
             name: 'bool',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {},
       },
@@ -206,7 +206,7 @@ const BUILTIN_NODES = [
             name: 'bool',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:3da2ba5d8b7e66b3c67547738d4fe77d': {
@@ -334,7 +334,7 @@ const BUILTIN_NODES = [
             name: 'script',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:dacd35f6cdbff5863aadb46b38bcdd07': {
@@ -461,7 +461,7 @@ const BUILTIN_NODES = [
             name: 'script',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:d1171f869734b48a87d77629138a0551': {
@@ -639,7 +639,7 @@ const BUILTIN_NODES = [
             options: ['duration', 'until'],
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:e1dfb60c60cc68149d5e40a7fb4fccb2': {
@@ -791,7 +791,7 @@ const BUILTIN_NODES = [
             name: 'script',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:3ff1df0edb71bd65638eaa07344ef711': {
@@ -961,7 +961,7 @@ const BUILTIN_NODES = [
             name: 'number',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:be809cdefebe7110a05cf031f27def6e': {
@@ -1120,7 +1120,7 @@ const BUILTIN_NODES = [
             name: 'number',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:5bec4c119eb4201aeb688bfd462efda8': {
@@ -1199,7 +1199,7 @@ const BUILTIN_NODES = [
             name: 'number',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {},
       },
@@ -1324,7 +1324,7 @@ const BUILTIN_NODES = [
             name: 'script',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:6e4208dbb04e871621658a22ae312dca': {
@@ -1399,7 +1399,7 @@ const BUILTIN_NODES = [
             name: 'text',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {},
       },
@@ -1532,7 +1532,7 @@ const BUILTIN_NODES = [
             name: 'script',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:8da6cc3459d5d440c80fe7ad4ffbcc7d': {
@@ -1691,7 +1691,7 @@ const BUILTIN_NODES = [
             name: 'number',
           },
         ],
-        version: 3,
+        version: 1,
         widgets: {},
         positions: {
           'record:a87b17b08cac3cb378138c3bb5c0133d': {

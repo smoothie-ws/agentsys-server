@@ -32,7 +32,7 @@ test('help and version describe the deployment surface, including the private-ne
     assert.match(help.stdout, new RegExp(flag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   const version = run(['version']);
   assert.equal(version.code, 0);
-  assert.equal(version.stdout.trim(), require('../package.json').version + ' (protocol 2)');
+  assert.equal(version.stdout.trim(), require('../package.json').version + ' (protocol 1)');
 });
 
 test('startup validation names the bad value instead of failing later', () => {
