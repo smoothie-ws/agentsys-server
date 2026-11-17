@@ -1,5 +1,4 @@
-// Helpers every layer uses. Loaded by the client (index.html) and by the server runtime (server/manifest.js),
-// so it must not touch the DOM, the server filesystem or the browser storage APIs.
+// Pure server helpers and capability syntax. No filesystem, network or DOM access.
 'use strict';
 
 class ApiError extends Error {

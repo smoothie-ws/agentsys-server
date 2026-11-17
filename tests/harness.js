@@ -1,7 +1,7 @@
 'use strict';
 // Loads the browser-free half of the app (storage, model, backend) into a Node vm context so the API can be
 // tested without a browser. The loader lives in headless.js (it is also what the server runs); the script list is
-// fixed in server/manifest.js, independently of the browser entry point.
+// fixed in headless.js, independently of the browser entry point.
 const path = require('node:path');
 const {loadBackend} = require('../headless');
 

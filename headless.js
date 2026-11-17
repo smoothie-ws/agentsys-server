@@ -1,6 +1,6 @@
 'use strict';
 // Loads the server half of the app (shared helpers, storage, model, backend) into a Node vm context. The script
-// list is the fixed manifest in server/manifest.js: the client's index.html cannot add code to the server.
+// list is the fixed manifest in headless.js: the client's index.html cannot add code to the server.
 // Used by the server (HTTP API, worker threads, data folder) and by the tests (in memory, Scripts inline).
 const fs = require('node:fs');
 const path = require('node:path');
@@ -9,7 +9,17 @@ const http = require('node:http');
 const https = require('node:https');
 const zlib = require('node:zlib');
 const {Worker} = require('node:worker_threads');
-const {FILES} = require('./server/manifest');
+const FILES = [
+  "runtime/core.js",
+  "runtime/storage.js",
+  "runtime/format.js",
+  "runtime/graph.js",
+  "runtime/editor.js",
+  "runtime/executor.js",
+  "runtime/backend.js",
+  "runtime/routes.js",
+  "runtime/library.js"
+];
 
 /**
  * An HTTP(S) request that connects to `address` instead of resolving the hostname a second time. This is the
@@ -170,7 +180,6 @@ class NodeWorker {
 function loadBackend({root, store = null, scripts = 'worker', allowedNetHosts = null, blockPrivateNet = false} = {}) {
   const workerStats = {started: 0, terminated: 0, exited: 0};
   root = path.resolve(root || __dirname);
-  const files = FILES;
   const sandbox = {
     console,
     crypto: globalThis.crypto,
@@ -203,7 +212,7 @@ function loadBackend({root, store = null, scripts = 'worker', allowedNetHosts = 
   if (scripts === 'worker') sandbox.AGENTSYS_SPAWN_WORKER = source => new NodeWorker(source, workerStats);
   const context = vm.createContext(sandbox);
   context.self = context;
-  for (const file of files) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, {filename: file});
+  for (const file of FILES) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, {filename: file});
 
   return {
     workerStats,
@@ -214,4 +223,4 @@ function loadBackend({root, store = null, scripts = 'worker', allowedNetHosts = 
   };
 }
 
-module.exports = {loadBackend, pinnedRequest};
+module.exports = {loadBackend, pinnedRequest, FILES};

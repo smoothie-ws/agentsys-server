@@ -4,17 +4,17 @@
   "description": "Independent AgentSys server",
   "license": "UNLICENSED",
   "bin": {
-    "agentsys-server": "bin/agentsys-server.js"
+    "agentsys-server": "cli.js"
   },
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "test": "node --test",
-    "start": "node bin/agentsys-server.js start"
+    "start": "node cli.js start"
   },
   "files": [
-    "bin/",
+    "cli.js",
     "server/",
     "runtime/",
     "headless.js",

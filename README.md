@@ -17,20 +17,19 @@ Use `agentsys-server help` for complete flags. A loopback-only installation can
 run without a token. For remote access set AGENTSYS_TOKEN and use --host 0.0.0.0.
 Add every browser origin explicitly with --allowed-origin https://client.example.
 Store data on a persistent writable filesystem. Never expose that directory with
-a static web server. Back up while the server is stopped or use tools/backup.js
-from the source distribution. Do not run two servers against one data directory.
+a static web server. Back up while the server is stopped with `agentsys-server backup --data ./data --out ./backups`. Do not run two servers against one data directory.
 
-Source installation needs no npm dependencies: `node bin/agentsys-server.js start`.
+Source installation needs no npm dependencies: `node cli.js start`.
 Build an npm artifact with `npm pack`. CLI status exits nonzero when unreachable.
 
 Use a new empty directory for the initial store. Its marker is `.agentsys-store.json` with `{"format":"agentsys.store/1"}`. A nonempty unmarked or unsupported directory is refused without changing files. Backups include this marker.
 
 ## Architecture
 
-The server is a headless Node.js 22+ service. bin/agentsys-server.js owns process
+The server is a headless Node.js 22+ service. cli.js owns process
 lifecycle; server/api-server.js owns HTTP, authentication, origin/host validation,
 SSE and diagnostics. server/file-store.js owns durable files and locking.
-headless.js loads a fixed server/manifest.js list into an isolated VM. runtime/
+headless.js loads a fixed headless.js list into an isolated VM. runtime/
 contains authoritative graph, storage, mutation, permissions and execution code.
 Script workers are isolated from Node globals and are terminated on shutdown.
 
