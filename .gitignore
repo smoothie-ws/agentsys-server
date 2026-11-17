@@ -1,10 +1,8 @@
 node_modules/
 dist/
 data/
+.local/
 __pycache__/
-extraction-tests.txt
+*.py[cod]
 *.tgz
-package-result.json
-restored-tests.txt
-*-tests.txt
 .container-smoke.json

@@ -17,6 +17,6 @@ jobs:
       - run: python -c "import shutil; shutil.make_archive('agentsys-api-1.0','zip','api')"
       - run: docker build -t agentsys-server:${GITHUB_REF_NAME#v} .
       - run: docker save agentsys-server:${GITHUB_REF_NAME#v} | gzip > agentsys-server-image.tar.gz
-      - run: gh release create "$GITHUB_REF_NAME" *.tgz *.zip *.tar.gz --title "AgentSys Server ${GITHUB_REF_NAME#v}" --notes-file RELEASE-NOTES.md --latest
+      - run: gh release create "$GITHUB_REF_NAME" *.tgz *.zip *.tar.gz --title "AgentSys Server ${GITHUB_REF_NAME#v}" --notes "Standalone AgentSys Server MVP. See the repository README for installation and usage." --latest
         env:
           GH_TOKEN: ${{ github.token }}
