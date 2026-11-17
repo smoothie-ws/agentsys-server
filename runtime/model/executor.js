@@ -728,7 +728,7 @@ function createGraphInterpreter(document, saved, env) {
     try {
       const outputs = {};
       if (event.input_port !== undefined) await fireTo(view.inputTargets(id, event.input_port), ctx);
-      // A disabled node does not receive signals (docs/engine.md): it cannot report the values of an
+      // A disabled node does not receive signals: it cannot report the values of an
       // earlier run as if this dispatch produced them.
       if (!view.get(id)) {
         emit({ev: 'root', id});

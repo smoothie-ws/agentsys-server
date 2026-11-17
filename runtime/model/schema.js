@@ -5,7 +5,7 @@
 /**
  * What a Custom node does besides holding values (`config.op`): the operations the engine knows. A node without one only holds the
  * values typed into its outputs. `script` runs JavaScript when a signal reaches it; the `on_*` nodes are the sources of signals
- * (see docs/engine.md). Nothing else is built into the engine.
+ *. Nothing else is built into the engine.
  */
 const OPS = new Set(['script', 'on_run', 'on_read', 'on_placed', 'on_deleted', 'on_input_connected', 'on_widget']);
 /** The types of a Script's code (text typed in as code): the same IDs in every workflow and Library node, so they are one type everywhere. */
